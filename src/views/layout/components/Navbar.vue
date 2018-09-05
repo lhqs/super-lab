@@ -7,13 +7,11 @@
         <img class="user-avatar" :src="avatar">
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
-        <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>
-            Home
-          </el-dropdown-item>
+        <router-link class="inlineBlock" to="/home/home">
+          <el-dropdown-item>Home</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span @click="logout" style="display:block;">LogOut</span>
+          <span @click="logout" style="display:block;">Exit</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

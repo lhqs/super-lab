@@ -1,43 +1,41 @@
 import axios from 'axios'
-
-// let baseUrl = 'http://localhost:8011/api';
-// let baseUrl = 'http://plant.lhqs1314.cn:8011/api';
-const baseUrl = 'http://60.247.77.152:19003/api'
 const exportUrl = process.env.BASE_API
+const requestUrl = process.env.BASE_API
 
-// export const uploadLogeUrl = params => { return axios.post(`${baseUrl}/uploadOrgLogo`,  params)}
-export const uploadLogeUrl = params => {
-  return axios.post(`${baseUrl}/uploadOrgLogo`, params)
-}
-
-// 按症状查科室
-export const getDepartment = params => {
-  return axios.get(`${baseUrl}/getDepartment`, { params: params })
-}
-
-// 按症状查科室Record
-export const getDepartmentRecord = params => {
-  return axios.get(`${baseUrl}/getDepartmentRecord`, { params: params })
-}
-
-// 常见健康问答
-export const getAnswer = params => {
-  return axios.get(`${baseUrl}/getAnswer`, { params: params })
-}
-
-// temp_test
-export const getTemptest = params => {
-  return axios.get(`http://api.deepintell.net/ner`, { params: params })
-}
+// import request from '@/utils/request'
+// export function submitContent(params) {
+//   return request({
+//     url: '/content/getContent',
+//     method: 'post',
+//     data: params
+//   })
+// }
 
 // login
 export const logintest = params => {
   return axios.post(`http://localhost:8099/api/login`, params)
 }
-// info
-export const getInfoTest = params => {
-  return axios.post(`http://localhost:8099/api/getInfo`, params)
+
+export const exportLogByTime = params => {
+  return axios.get(`${exportUrl}/log/exportLogByTime`, { params: params })
+}
+export const exportCsvLogByTimeCsv = params => {
+  return axios.get(`${exportUrl}/log/exportLogForCsv`, { params: params })
+}
+export const getContentList = params => {
+  return axios.get(`${requestUrl}/content/getContentList`, { params: params })
 }
 
-export const exportLogByTime = params => { return axios.get(`${exportUrl}/log/exportLogByTime`, { params: params }) }
-export const exportCsvLogByTimeCsv = params => { return axios.get(`${exportUrl}/log/exportLogForCsv`, { params: params }) }
+export const getGroupInfo = params => { return axios.get(`${requestUrl}/user/getGroupInfo`, { params: params }) }
+export const getAllMember = params => { return axios.get(`${requestUrl}/user/getAllMember`, { params: params }) }
+export const getTaskList = params => { return axios.get(`${requestUrl}/task/getTaskList`, { params: params }) }
+export const getTaskRecord = params => { return axios.get(`${requestUrl}/task/getTaskRecord`, { params: params }) }
+export const verifyOperate = params => { return axios.get(`${requestUrl}/task/verifyOperate`, { params: params }) }
+export const renewProgress = params => { return axios.get(`${requestUrl}/task/renewProgress`, { params: params }) }
+export const deleteTaskById = params => { return axios.delete(`${requestUrl}/task/deleteTaskById`, { params: params }) }
+export const addTaskList = params => { return axios.post(`${requestUrl}/task/addTaskList`, params) }
+
+export const hiddeContent = params => { return axios.get(`${requestUrl}/content/hiddeContent`, { params: params }) }
+export const uploadHandle = params => { return axios.post(`${requestUrl}/upload/uploadHandle`, params) }
+export const submitContent = params => { return axios.post(`${requestUrl}/content/addContent`, params) }
+

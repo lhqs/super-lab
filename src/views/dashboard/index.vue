@@ -1,63 +1,65 @@
 <template>
   <div class="dashboard-container">
-    <!--<div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div>-->
-    <!--<div align="center" class="main">这里是实验室交流系统主页</div>-->
+    <div class="lab-info">
+      <el-card>
+        <div class="lab-title" slot="header">实验室logo</div>
+        <div class="lab-content">
+          <div class="lab-logo"><img src="http://qiniu.lhqs1314.cn/file/lab/super_lab_logo.png" alt="超计算实验室logo"></div>
+        </div>
+      </el-card>
+    </div>
 
-    <el-card class="user-info">
-      <div class="user-title" slot="header">
-        <span>个人信息</span>
-        <!--<el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
-      </div>
-      <div class="user-content">
-        <img class="user-avatar" :src="avatar">
-        <div><span>性别: {{sex}}</span><span> 修改 </span> </div>
-        <div><span>登入名称：{{}}</span><span> 修改 </span> </div>
-        <div><span>电话: {{mobile}}</span><span> 绑定 </span> </div>
-        <div><span>邮箱：{{}}</span><span> 绑定 </span> </div>
-        <div>修改时间：{{}}</div>
-      </div>
-    </el-card>
+    <div class="lab-info">
+      <el-card>
+        <div class="lab-title" slot="header">实验室介绍</div>
+        <div class="lab-content">
+          <div class="lab-description">超计算实验室，成立于2018年，致力于研究XXX。</div>
+        </div>
+      </el-card>
+    </div>
+
+    <div class="group-info">
+      <el-card>
+        <div class="lab-title" slot="header">团队成员</div>
+        <div class="team-content">
+          <div>XXX，女，XXX, 主要负责XXX, 作品有XXX</div>
+          <div>XXX，男，XXX，主要负责XXX, 作品有XXX</div>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: 'dashboard',
-  computed: {
-    ...mapGetters([
-      'name',
-      'roles',
-      'avatar',
-      'sex',
-      'userId',
-      'mobile'
-    ])
-  }
+  name: 'dashboard'
+
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
+<style scoped>
+  .dashboard-container {
+    margin: auto;
+    width: 50%;
   }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
+  .lab-title {
+    font-weight: bold;
+    text-align: center;
   }
-}
-  .main {
-    font-size: 24px;
+  .lab-logo {
+    text-align: center;
   }
-  .user-info {
-    /*width: 480px;*/
+  .lab-description {
+    margin: 10px 0 10px 0;
   }
-  .user-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
+  .lab-info  {
+    margin-top: 40px;
+  }
+  .group-info {
+    margin-top: 40px;
+    margin-bottom: 20px
+  }
+  .team-content{
+    line-height: 26px;
   }
 </style>

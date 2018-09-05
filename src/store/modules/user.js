@@ -36,6 +36,12 @@ const user = {
     },
     SET_MOBILE: (state, mobile) => {
       state.mobile = mobile
+    },
+    SET_EMAIL: (state, email) => {
+      state.email = email
+    },
+    SET_ADDR: (state, addr) => {
+      state.addr = addr
     }
   },
 
@@ -66,7 +72,8 @@ const user = {
           commit('SET_SEX', data.sex)
           commit('SET_MOBILE', data.mobilePhone)
           commit('SET_USERID', data.userId)
-          // commit('SET_SEX', data.sex)
+          commit('SET_EMAIL', data.email)
+          commit('SET_ADDR', data.address)
           resolve(response)
         }).catch(error => {
           reject(error)

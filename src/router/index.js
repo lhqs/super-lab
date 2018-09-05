@@ -24,6 +24,7 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
+  // { path: '/home', component: () => import('@/views/dashboard/index'), hidden: true },
 
   {
     path: '/',
@@ -45,7 +46,19 @@ export const constantRouterMap = [
         path: 'lab',
         name: 'Lab',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '实验室', icon: 'arrow-left' }
+        meta: { title: '超计算实验室', icon: 'arrow-left' }
+      }
+    ]
+  },
+  {
+    path: '/home',
+    component: Layout,
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/views/item/home'),
+        meta: { title: '个人管理', icon: 'user-zone' }
       }
     ]
   },
@@ -58,7 +71,7 @@ export const constantRouterMap = [
         path: 'show',
         name: 'Show',
         component: () => import('@/views/item/show'),
-        meta: { title: '发布区', icon: 'show' }
+        meta: { title: '发布管理', icon: 'show' }
       }
     ]
   },
@@ -71,11 +84,11 @@ export const constantRouterMap = [
         path: 'talk',
         name: 'Talk',
         component: () => import('@/views/item/talk'),
-        meta: { title: '讨论区', icon: 'talk' }
+        meta: { title: '记录管理', icon: 'talk' }
       }
     ]
   },
-  {
+  /* {
     path: '/schedule',
     component: Layout,
     children: [
@@ -86,7 +99,54 @@ export const constantRouterMap = [
         meta: { title: '日程表', icon: 'schedule' }
       }
     ]
+  }, */
+  {
+    path: '/academic',
+    component: Layout,
+    children: [
+      {
+        path: 'academic',
+        name: 'Academic',
+        component: () => import('@/views/item/academic'),
+        meta: { title: '学术管理', icon: 'icon-academic' }
+      }
+    ]
   },
+  {
+    path: '/daily',
+    component: Layout,
+    children: [
+      {
+        path: 'daily',
+        name: 'Daily',
+        component: () => import('@/views/item/daily'),
+        meta: { title: '日常事务', icon: 'daily' }
+      }
+    ]
+  },
+  {
+    path: '/purchase',
+    component: Layout,
+    children: [
+      {
+        path: 'purchase',
+        name: 'Purchase',
+        component: () => import('@/views/item/purchase'),
+        meta: { title: '采购管理', icon: 'purchase' }
+      }
+    ]
+  }, /* {
+    path: '/test',
+    component: Layout,
+    children: [
+      {
+        path: 'test',
+        name: 'Test',
+        component: () => import('@/views/item/test'),
+        meta: { title: '临时测试', icon: 'test' }
+      }
+    ]
+  }, */
   { path: '*', redirect: '/404', hidden: true }
 ]
 
