@@ -1,5 +1,5 @@
 <template>
-  <div class="academic">
+  <div class="project">
     <div class="top">
       <div v-show="isAdmin == 1">
         <div class="task">
@@ -16,9 +16,8 @@
                     </el-col>
                     <el-col :span="8">
                       <el-select v-model="taskList.taskType" placeholder="请选择类型">
-                        <el-option label="阅读" value="read"></el-option>
-                        <el-option label="写作" value="write"></el-option>
-                        <el-option label="实验" value="experiment"></el-option>
+                        <el-option label="编码" value="code"></el-option>
+                        <el-option label="测试" value="test"></el-option>
                       </el-select>
                     </el-col>
                   </el-form-item>
@@ -221,7 +220,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: 'academic',
+    name: 'project',
     data() {
       return {
         taskList: {
@@ -284,7 +283,7 @@
       },
       fillTaskTable(taskConsumer, taskProducer, isComplete) {
         const _this = this
-        const params = { pageNum: this.pageNum, pageSize: this.pageSize, taskConsumer: taskConsumer, taskProducer: taskProducer, isComplete: isComplete, tags: 'acedemic', userId: this.userId }
+        const params = { pageNum: this.pageNum, pageSize: this.pageSize, taskConsumer: taskConsumer, taskProducer: taskProducer, isComplete: isComplete, tags: 'project', userId: this.userId }
         if (isComplete === 0) {
           getTaskList(params).then(res => {
             _this.total = res.data.data.total
@@ -300,7 +299,7 @@
       },
       fillFeedbackSheet() {
         const _this = this
-        const params = { pageNum: this.pageNumSheet, pageSize: this.pageSizeSheet, tags: 'acedemic' }
+        const params = { pageNum: this.pageNumSheet, pageSize: this.pageSizeSheet, tags: 'project' }
         console.log('p:', params)
         getFeedbackTaskSheet(params).then(res => {
           console.log(res)
@@ -389,7 +388,7 @@
         return util.formatDate.format(new Date(row.createTime), 'yyyy-MM-dd hh:mm')
       },
       typeFormat: function(value) {
-        return value.taskType === 'read' ? '阅读' : (value.taskType === 'experiment' ? '实验' : '写作')
+        return value.taskType === 'code' ? '编码' : '测试'
       },
       taskSearch() {
         this.fillTaskTable(this.taskConsumer, this.taskProducer, 0)
@@ -408,7 +407,7 @@
 </script>
 
 <style scoped>
-  .academic {
+  .project {
     margin: auto;
     width: 75%;
   }
@@ -432,8 +431,8 @@
     float: right;
   }
   /*.el-checkbox-group{*/
-    /*display: flex !important;*/
-    /*align-items: center;*/
+  /*display: flex !important;*/
+  /*align-items: center;*/
   /*}*/
   .user-avatar {
     width: 30px;

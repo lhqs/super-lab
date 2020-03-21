@@ -2,16 +2,22 @@
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <breadcrumb></breadcrumb>
+
+    <el-badge :value="value" class="item-message">
+      <router-link to="/home/message">
+        <el-button size="small" >我的消息</el-button>
+      </router-link>
+    </el-badge>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img class="user-avatar" :src="avatar">
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/home/home">
-          <el-dropdown-item>Home</el-dropdown-item>
+          <el-dropdown-item>主页</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span @click="logout" style="display:block;">Exit</span>
+          <span @click="logout" style="display:block;">退出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -22,8 +28,17 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import { getUnreadMsg } from '../../../api/api'
 
 export default {
+  data() {
+    return {
+      value: ''
+    }
+  },
+  created() {
+    this.getUnreadMessage()
+  },
   components: {
     Breadcrumb,
     Hamburger
@@ -31,7 +46,8 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+      'userId'
     ])
   },
   methods: {
@@ -42,6 +58,17 @@ export default {
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
+    },
+    getUnreadMessage() {
+      const _this = this
+      const param = { userId: this.userId }
+      getUnreadMsg(param).then((res) => {
+        if (res.data.data === 0) {
+          _this.value = ''
+        } else {
+          _this.value = res.data.data
+        }
+      })
     }
   }
 }
@@ -50,7 +77,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .navbar {
   height: 50px;
-  line-height: 50px;
+  line-height: 0px;
   border-radius: 0px !important;
   .hamburger-container {
     line-height: 58px;
@@ -63,6 +90,11 @@ export default {
     right: 90px;
     top: 16px;
     color: red;
+  }
+  .item-message {
+    float: right;
+    margin-right: 120px;
+    margin-top: 10px;
   }
   .avatar-container {
     height: 50px;

@@ -1,32 +1,20 @@
 <template>
   <div class="dashboard-container">
     <div class="lab-info">
-      <el-card>
-        <div class="lab-title" slot="header">实验室logo</div>
         <div class="lab-content">
-          <div class="lab-logo"><img src="http://qiniu.lhqs1314.cn/file/lab/super_lab_logo.png" alt="超计算实验室logo"></div>
+          <div class="lab-logo"><img class="img-style" src="http://qiniu.lhqs1314.cn/file/lab/experiment_lab_logo.png" alt="超计算实验室logo"></div>
         </div>
-      </el-card>
     </div>
 
-    <div class="lab-info">
+    <!--<div class="lab-info">
       <el-card>
         <div class="lab-title" slot="header">实验室介绍</div>
         <div class="lab-content">
-          <div class="lab-description">超计算实验室，成立于2018年，致力于研究XXX。</div>
+          <div class="lab-description">超感知计算实验室，成立于2018年，致力于研究XXX。</div>
         </div>
       </el-card>
-    </div>
+    </div>-->
 
-    <div class="group-info">
-      <el-card>
-        <div class="lab-title" slot="header">团队成员</div>
-        <div class="team-content">
-          <div>XXX，女，XXX, 主要负责XXX, 作品有XXX</div>
-          <div>XXX，男，XXX，主要负责XXX, 作品有XXX</div>
-        </div>
-      </el-card>
-    </div>
   </div>
 </template>
 
@@ -55,11 +43,8 @@ export default {
   .lab-info  {
     margin-top: 40px;
   }
-  .group-info {
-    margin-top: 40px;
-    margin-bottom: 20px
-  }
-  .team-content{
-    line-height: 26px;
+  .img-style {
+    width: 160px;
+    height: 160px;
   }
 </style>

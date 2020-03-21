@@ -9,6 +9,8 @@ const getters = {
   userId: state => state.user.userId,
   mobile: state => state.user.mobile,
   email: state => state.user.email,
-  addr: state => state.user.addr
+  addr: state => state.user.addr,
+  isAdmin: state => state.user.isAdmin,
+  desc: state => state.user.desc
 }
 export default getters

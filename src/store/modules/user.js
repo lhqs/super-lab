@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/login'
+import { login, logout, getInfo, register } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -11,7 +11,9 @@ const user = {
     mobile: '',
     sex: '',
     address: '',
-    updateTime: ''
+    updateTime: '',
+    isAdmin: '',
+    desc: ''
 
   },
 
@@ -42,6 +44,12 @@ const user = {
     },
     SET_ADDR: (state, addr) => {
       state.addr = addr
+    },
+    SET_ISADMIN: (state, isAdmin) => {
+      state.isAdmin = isAdmin
+    },
+    SET_DESC: (state, desc) => {
+      state.desc = desc
     }
   },
 
@@ -60,7 +68,19 @@ const user = {
         })
       })
     },
-
+    // 注册
+    Register({ commit }, registerForm) {
+      return new Promise((resolve, reject) => {
+        register(registerForm).then(response => {
+          const data = response.data
+          setToken(data.token)
+          commit('SET_TOKEN', data.token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
@@ -74,6 +94,8 @@ const user = {
           commit('SET_USERID', data.userId)
           commit('SET_EMAIL', data.email)
           commit('SET_ADDR', data.address)
+          commit('SET_ISADMIN', data.isAdmin)
+          commit('SET_DESC', data.characterDesc)
           resolve(response)
         }).catch(error => {
           reject(error)

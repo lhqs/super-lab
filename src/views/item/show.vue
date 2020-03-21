@@ -14,9 +14,7 @@
               <img :src="img" style="width: 140px; height: 80px;margin:0 10px 5px 0;cursor: pointer; ">
             </div>
             <div class="file-showlist" v-for="file in fileUrl">
-              <div class="show-file">
-                <span>文件</span>
-              </div>
+              <div class="show-file"><span>文件</span></div>
               <div class="file-name">{{ file | getFileName }}</div>
             </div>
           </div>
@@ -25,19 +23,8 @@
             <el-button type="danger" size="small" @click="onReset">清除</el-button>
             <el-button type="primary" size="small" @click="onSubmit">发布</el-button>
           </div>
-          <el-upload
-            class="upload-file"
-            action="attr"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
-            :on-change="onChange"
-            multiple
-            :show-file-list=false
-            :limit="20"
-            :http-request="customUpload"
-            :on-exceed="handleExceed"
-            :file-list="fileList">
+          <el-upload class="upload-file" action="attr" :on-preview="handlePreview" :on-remove="handleRemove" :before-remove="beforeRemove"
+            :on-change="onChange" multiple :show-file-list=false :limit="20" :http-request="customUpload" :on-exceed="handleExceed" :file-list="fileList">
             <el-button size="small" type="primary">上传附件</el-button>
           </el-upload>
         </div>
@@ -66,12 +53,8 @@
                                                     style="width: 184px; height: 140px;margin: 10px 5px 0 5px;cursor: pointer; "></a>
             </div>
             <div class="file-showlist" v-for="file in content.fileUrl" v-if="content.fileUrl[0] != ''">
-              <div class="show-file">
-                <span>文件</span>
-              </div>
-              <a :href="file">
-                <div class="file-name">{{ file | getFileName }}</div>
-              </a>
+              <div class="show-file"><span>文件</span></div>
+              <a :href="file"><div class="file-name">{{ file | getFileName }}</div></a>
             </div>
           </div>
         </el-card>

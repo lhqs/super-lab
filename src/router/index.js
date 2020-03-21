@@ -23,6 +23,7 @@ import Layout from '../views/layout/Layout'
 **/
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/register', component: () => import('@/views/login/register'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
   // { path: '/home', component: () => import('@/views/dashboard/index'), hidden: true },
 
@@ -46,60 +47,41 @@ export const constantRouterMap = [
         path: 'lab',
         name: 'Lab',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '超计算实验室', icon: 'arrow-left' }
+        meta: { title: '超感知计算实验室', icon: 'arrow-left' }
       }
     ]
   },
   {
     path: '/home',
     component: Layout,
+    redirect: '/home/home',
+    // name: 'Home',
+    meta: { title: '个人管理', icon: 'user-tree' },
     children: [
       {
         path: 'home',
         name: 'Home',
         component: () => import('@/views/item/home'),
-        meta: { title: '个人管理', icon: 'user-zone' }
-      }
-    ]
-  },
-
-  {
-    path: '/show',
-    component: Layout,
-    children: [
-      {
-        path: 'show',
-        name: 'Show',
-        component: () => import('@/views/item/show'),
-        meta: { title: '发布管理', icon: 'show' }
-      }
-    ]
-  },
-
-  {
-    path: '/talk',
-    component: Layout,
-    children: [
-      {
+        meta: { title: '信息管理', icon: 'user-zone' }
+      }, {
+        path: 'message',
+        name: 'Message',
+        component: () => import('@/views/item/message'),
+        meta: { title: '消息管理', icon: 'user-message' }
+      }, {
+        path: 'mytask',
+        name: 'Mytask',
+        component: () => import('@/views/item/mytask'),
+        meta: { title: '任务管理', icon: 'user-task' }
+      }/*  {
         path: 'talk',
         name: 'Talk',
+        hidden: false,
         component: () => import('@/views/item/talk'),
-        meta: { title: '记录管理', icon: 'talk' }
-      }
+        meta: { title: '任务讨论', icon: 'user-talk' }
+      }*/
     ]
   },
-  /* {
-    path: '/schedule',
-    component: Layout,
-    children: [
-      {
-        path: 'schedule',
-        name: 'Schedule',
-        component: () => import('@/views/item/schedule'),
-        meta: { title: '日程表', icon: 'schedule' }
-      }
-    ]
-  }, */
   {
     path: '/academic',
     component: Layout,
@@ -108,7 +90,7 @@ export const constantRouterMap = [
         path: 'academic',
         name: 'Academic',
         component: () => import('@/views/item/academic'),
-        meta: { title: '学术管理', icon: 'icon-academic' }
+        meta: { title: '科研管理', icon: 'icon-academic' }
       }
     ]
   },
@@ -120,11 +102,48 @@ export const constantRouterMap = [
         path: 'daily',
         name: 'Daily',
         component: () => import('@/views/item/daily'),
-        meta: { title: '日常事务', icon: 'daily' }
+        meta: { title: '日常管理', icon: 'daily' }
       }
     ]
   },
   {
+    path: '/project',
+    component: Layout,
+    children: [
+      {
+        path: 'project',
+        name: 'Project',
+        component: () => import('@/views/item/project'),
+        meta: { title: '项目管理', icon: 'project' }
+      }
+    ]
+  },
+  {
+    path: '/talk',
+    component: Layout,
+    children: [
+      {
+        path: 'talk',
+        name: 'Talk',
+        component: () => import('@/views/item/talk'),
+        meta: { title: '任务讨论', icon: 'user-talk' }
+      }
+    ]
+  },
+  {
+    path: '/show',
+    component: Layout,
+    // hidden: true,
+    children: [
+      {
+        path: 'show',
+        name: 'Show',
+        component: () => import('@/views/item/show'),
+        meta: { title: '交流分享', icon: 'show' }
+      }
+    ]
+  },
+  /* {
     path: '/purchase',
     component: Layout,
     children: [
@@ -135,7 +154,7 @@ export const constantRouterMap = [
         meta: { title: '采购管理', icon: 'purchase' }
       }
     ]
-  }, /* {
+  },*/ /* {
     path: '/test',
     component: Layout,
     children: [
